@@ -18,8 +18,6 @@ function Logger(logpath) {
     encoding: 'utf8',
     mode: 0666
   });
-
-  this.stream.write('\n');
 }
 
 
@@ -31,6 +29,7 @@ function Logger(logpath) {
  * @return {string}     The formatted log message.
 **/
 Logger.prototype.format = function(level, message) {
+  if(level.length < 5) level += ' ';
   return level + ' [' + (new Date()).toUTCString() + '] ' + message + '\n';
 };
 

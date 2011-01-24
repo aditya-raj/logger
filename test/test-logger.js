@@ -19,22 +19,23 @@ module.exports = {
     var test_id = 0;
 
     log.format = function(level, message) {
+      if(level.length < 5) level += ' ';
       return level + ' [' + (new Date(0)).toUTCString() + '] ' + message + '\n';
     };
     
     log.stream.write = function(msg) {
       switch (test_id) {
         case 0:
-          assert.equal('INFO [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
+          assert.equal('INFO  [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
           break;
         case 1:
-          assert.equal('INFO [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
+          assert.equal('INFO  [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
           break;
         case 2:
           assert.equal('DEBUG [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
           break;
         case 3:
-          assert.equal('WARN [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
+          assert.equal('WARN  [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
           break;
         case 4:
           assert.equal('ERROR [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
