@@ -1,0 +1,21 @@
+{
+    "version": "0.0.1",
+    "description": "A Simpler way to log data to files from Node",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/votizen/logger.git"
+    },
+    "main": "./index.js",
+    "bugs": {
+        "web": "http://github.com/votizen/logger/issues"
+    },
+    "author": "Micheil Smith <micheil@votizen.com>",
+    "licenses": [{
+        "type": "MIT",
+        "url": "./LICENSE.md"
+    }],
+    "name": "votizen-logger",
+    "engines": {
+        "node": ">=0.2.0-0"
+    }
+}
