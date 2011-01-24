@@ -29,7 +29,7 @@ function Logger(logpath) {
  * @return {string}     The formatted log message.
 **/
 Logger.prototype.format = function(level, message) {
-  if(level.length < 5) level += ' ';
+  if (level.length < 5) level += ' ';
   return level + ' [' + (new Date()).toUTCString() + '] ' + message + '\n';
 };
 

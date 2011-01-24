@@ -19,10 +19,10 @@ module.exports = {
     var test_id = 0;
 
     log.format = function(level, message) {
-      if(level.length < 5) level += ' ';
+      if (level.length < 5) level += ' ';
       return level + ' [' + (new Date(0)).toUTCString() + '] ' + message + '\n';
     };
-    
+
     log.stream.write = function(msg) {
       switch (test_id) {
         case 0:
@@ -49,7 +49,7 @@ module.exports = {
           );
           break;
       }
-      
+
       fs.WriteStream.prototype.write.call(log.stream, msg);
     }
 
@@ -67,7 +67,7 @@ module.exports = {
     test_id++;
     log.log('hello', {a: 'b'});
   },
-  // after: function(){
-  //     fs.unlinkSync(LOG_PATH)
-  //   }
+  after: function() {
+    fs.unlinkSync(LOG_PATH);
+  }
 };
