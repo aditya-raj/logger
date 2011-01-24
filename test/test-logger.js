@@ -4,24 +4,24 @@ var Logger = require('../').Logger,
     path = require('path');
 
 var TEST_DIR = path.dirname(__filename);
-var LOG_PATH = path.join(TEST_DIR, './tmpdir/test-log');
+var LOG_PATH = path.join(TEST_DIR, './tmpdir/test.log');
+
+var log = new Logger(LOG_PATH);
 
 module.exports = {
   'test: Logger.createLog()': function() {
-    var log = new Logger(LOG_PATH);
     assert.ok(log instanceof Logger);
     assert.equal(LOG_PATH, log.path);
     assert.ok(log.stream instanceof fs.WriteStream);
   },
 
   'test: mylog.write': function() {
-    var log = new Logger(LOG_PATH);
     var test_id = 0;
 
     log.format = function(level, message) {
       return level + ' [' + (new Date(0)).toUTCString() + '] ' + message + '\n';
     };
-
+    
     log.stream.write = function(msg) {
       switch (test_id) {
         case 0:
@@ -42,7 +42,14 @@ module.exports = {
         case 5:
           assert.equal('FATAL [Thu, 01 Jan 1970 00:00:00 GMT]  hello\n', msg);
           break;
+        case 5:
+          assert.equal(
+              'FATAL [Thu, 01 Jan 1970 00:00:00 GMT]  hello {"a":"b"}\n', msg
+          );
+          break;
       }
+      
+      fs.WriteStream.prototype.write.call(log.stream, msg);
     }
 
     log.log('hello');
@@ -56,5 +63,10 @@ module.exports = {
     log.error('hello');
     test_id++;
     log.fatal('hello');
-  }
+    test_id++;
+    log.log('hello', {a: 'b'});
+  },
+  // after: function(){
+  //     fs.unlinkSync(LOG_PATH)
+  //   }
 };
