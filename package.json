@@ -10,6 +10,10 @@
         "web": "http://github.com/votizen/logger/issues"
     },
     "author": "Micheil Smith <micheil@votizen.com>",
+    "maintainers": [
+      "Micheil Smith <micheil@brandedcode.com>",
+      "Tim Smart <tim@fostle.com>"
+    ],
     "licenses": [{
         "type": "MIT",
         "url": "./LICENSE.md"
