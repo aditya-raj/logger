@@ -59,6 +59,14 @@ Logger.prototype.write = function(level, data) {
 
 
 /**
+ * Ends a current logger session
+**/
+Logger.prototype.end = function() {
+  this.stream.end();
+};
+
+
+/**
  * @see Logger.prototype.write
 **/
 Logger.prototype.log = function() {
