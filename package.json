@@ -1,5 +1,5 @@
 {
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "A Simpler way to log data to files from Node",
     "repository": {
         "type": "git",
